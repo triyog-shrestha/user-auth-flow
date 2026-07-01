@@ -1,12 +1,16 @@
 from django.shortcuts import render, redirect
 from .forms import RegisterForm
-from django.contrib.auth import login
+from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 @login_required
 def home(request):
     return render(request, 'main/home.html')
+
+def logout_user(request):
+    logout(request)
+    return redirect('login')
 
 def sign_up(request):
     if request.method == 'POST':
