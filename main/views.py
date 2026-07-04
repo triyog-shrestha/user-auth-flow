@@ -1,12 +1,21 @@
 from django.shortcuts import render, redirect
-from .forms import RegisterForm
+from .forms import RegisterForm, PostForm
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
+from .models import Post
 
 # Create your views here.
-@login_required
+@login_required(login_url='/login')
 def home(request):
-    return render(request, 'main/home.html')
+    posts = Post.objects.all()
+
+    if request.method == 'POST':
+        post_id = request.POST.get("post-id")
+        post = Post.objects.filter(id=post_id).first()
+        if post and post.author == request.user:
+            post.delete()
+
+    return render(request, 'main/home.html', {'posts' : posts})
 
 def logout_user(request):
     logout(request)
@@ -23,3 +32,17 @@ def sign_up(request):
         form = RegisterForm()
     
     return render(request, 'registration/sign-up.html', {'form':form})
+
+@login_required(login_url='/login')
+def create_post(request):
+    if request.method == 'POST':
+        form = PostForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.author = request.user
+            post.save()
+            return redirect('/home/')
+    else:
+        form = PostForm()
+    
+    return render(request, 'main/create_post.html' , {'form':form})

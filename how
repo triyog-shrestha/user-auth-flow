@@ -12,3 +12,9 @@
  10 | auth         | 0005_alter_user_last_login_null       | 2026-06-27 13:44:41.593407+00
 (10 rows)
 
+ | username | first_name | last_name |           email            | is_staff | is_active |          date_joined          
+----+-------------------------------------------------------------------------------------------+-------------------------------+--------------+----------+------------+-----------+----------------------------+----------+-----------+-------------------------------
+  2 | pbkdf2_sha256$1200000$Dcxt9TcWOBC1U3pan8hmOC$C+XlC4hzBKY/R9YMU9jlPRapMrfcxMXuhR0TFPentEM= | 2026-06-30 17:07:33.829234+00 | f            | www      |            |           | t@gmail.com                | f        | t         | 2026-06-30 17:07:29.628632+00
+  1 | pbkdf2_sha256$1200000$XtBPMU46IHhTvbsDhSJj3W$Bk5tJTcV6IAREZ4yKsUyv7anoir0EprZgoVTFlUxwoA= | 2026-07-04 13:31:30.850927+00 | f            | triyog   |            |           | triyogshrestha86@gmail.com | f        | t         | 2026-06-30 16:15:08.309862+00
+  3 | pbkdf2_sha256$1200000$arl3t5pWMQWX9hGlgODaxA$Z8SkBwj3Asbo5P7HYNpB32lgyH7YyDZU0YUNSQcPPqU= | 2026-07-04 13:50:18.113062+00 | f            | t        |            |           | t@gmail.com                | f        | t         | 2026-07-04 13:50:13.463956+00
+(3 rows)
