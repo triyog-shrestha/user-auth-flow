@@ -1,5 +1,7 @@
 {% extends 'main/base.html' %}
 
+{% block navbar %}{% endblock %}
+
 {% block title %}
     Login
 {% endblock %}
@@ -7,10 +9,19 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-    <form method="post">
-        {% csrf_token %} 
-        {{form|crispy}}
-        <p>Dont have an account? Create one <a href="{% url 'sign_up' %}">here</a></p>
-        <button type="submit" class="btn btn-success">Login</button>
-    </form>
+    <section class="form-page">
+        <div class="form-panel">
+            <div class="eyebrow">Welcome back</div>
+            <h1>Login</h1>
+            <p class="form-intro">Sign in to manage your posts and access the feed.</p>
+            <form method="post">
+                {% csrf_token %} 
+                {{form|crispy}}
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-success">Login</button>
+                </div>
+            </form>
+            <p class="form-footnote">Dont have an account? Create one <a href="{% url 'sign_up' %}">here</a></p>
+        </div>
+    </section>
 {% endblock %}

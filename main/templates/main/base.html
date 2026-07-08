@@ -3,45 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'main/styles.css' %}">
     <title> {% block title %} My Site {% endblock %} </title>
 </head>
-<body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-            <div>
-                <ul class="navbar-nav">
+<body class="site-body">
+    {% block navbar %}
+    <nav class="navbar navbar-expand-lg app-navbar">
+        <div class="container py-2">
+            <a href="{% url 'home' %}" class="navbar-brand app-brand">Postinger</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
                         <a href="{% url 'home' %}" class="nav-link">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a href="{% url 'create_post'%}" class="nav-link">Post</a>
+                        <a href="{% url 'create_post'%}" class="nav-link">New post</a>
                     </li>
                 </ul>
+                <div class="d-flex align-items-center gap-2 ms-lg-auto">
+                    {% if user.is_authenticated %}
+                        <span class="user-pill">{{ user.username }}</span>
+                        <a href="{% url 'logout' %}" class="btn btn-outline-light btn-sm">Logout</a>
+                    {% else %}
+                        <a href="{% url 'login' %}" class="btn btn-outline-light btn-sm">Login</a>
+                    {% endif %}
+                </div>
             </div>
-                
-            <div>
-                <ul class="navbar-nav">
-                    <li class="nav-item d-flex align-items-center">
-                        {% if user.is_authenticated %}
-                            <span class="navbar-text">Logged in as {{ user.username }} |</span>
-                            <a href="{% url 'logout' %}" class="nav-link">Logout</a>
-                        {% else %}
-                            <a href="{% url 'login' %}" class="nav-link">Login</a>
-                        {% endif %}
-                    </li>
-                </ul>
-            </div>
-
         </div>
     </nav>
+    {% endblock %}
 
-    <div class="container">
+    <main class="container page-shell">
         {% block content %}
         {% endblock %}
-    </div>
-
-
+    </main>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 

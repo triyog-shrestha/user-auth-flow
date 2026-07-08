@@ -7,9 +7,18 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-    <form method="post">
-        {% csrf_token %} 
-        {{form|crispy}}
-        <button type="submit" class="btn btn-success">Proceed</button>
-    </form>
+    <section class="form-page">
+        <div class="form-panel">
+            <div class="eyebrow">Publish</div>
+            <h1>Create a post</h1>
+            <p class="form-intro">Write something clear and useful, then publish it to the feed.</p>
+            <form method="post">
+                {% csrf_token %} 
+                {{form|crispy}}
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-success">Proceed</button>
+                </div>
+            </form>
+        </div>
+    </section>
 {% endblock %}
