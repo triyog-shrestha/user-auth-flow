@@ -1,13 +1,20 @@
 # Byte-compiled files
 __pycache__/
 *.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
 
 # Virtual environment
 venv/
 env/
 .venv/
+.python-version
 
 # Django specific
+db.sqlite3
 *.sqlite3
 /media
 /staticfiles
