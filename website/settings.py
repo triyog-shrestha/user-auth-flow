@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -78,17 +79,25 @@ WSGI_APPLICATION = 'website.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'tutorial_django_pguf',
-        'USER' : 'tutorial_django_pguf_user',
-        'PORT': '5432',
-        'PASSWORD': '37MibGlS2iUtY3oCAZHqoPQZmDrOriZN',
-        'HOST': 'dpg-d8vt0mbsq97s738p2580-a.oregon-postgres.render.com'
-
+if os.getenv('DATABASE_URL') == 'postgres':
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': os.getenv('POSTGRES_DB', 'tutorial_django_pguf'),
+            'USER': os.getenv('POSTGRES_USER', 'tutorial_django_pguf_user'),
+            'PORT': os.getenv('POSTGRES_PORT', '5432'),
+            'PASSWORD': os.getenv('POSTGRES_PASSWORD', ''),
+            'HOST': os.getenv('POSTGRES_HOST', ''),
+            'CONN_MAX_AGE': 60,
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 
 
 # Password validation
