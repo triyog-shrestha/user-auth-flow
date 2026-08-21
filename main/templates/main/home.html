@@ -2,12 +2,6 @@
 {% block title %} Home Page {% endblock %}
 
 {% block content%}
-    <section class="hero-panel">
-        <div class="hero-meta">Community feed</div>
-        <h1>Recent posts, cleaner and easier to scan.</h1>
-        <p class="page-copy">See what people are sharing, manage posts when you have permission, and keep the interface focused on the content itself.</p>
-    </section>
-
     <div class="feed-list">
     {%for post in posts%}
     <article class="post-card">
@@ -28,7 +22,15 @@
             {% if user == post.author or perms.main.delete_post %}
                 <form method="POST">
                     {% csrf_token %}
-                    <button type="submit" class="btn btn-danger" name='post-id' value='{{post.id}}'>Delete</button>
+                    <button type="submit" class="btn btn-danger btn-sm icon-button" name='post-id' value='{{post.id}}' aria-label="Delete post" title="Delete post">
+                        <svg class="icon-button-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                            <path d="M3 6h18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M8 6V4h8v2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M6 6l1 14h10l1-14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M10 11v5M14 11v5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                        <span class="visually-hidden">Delete</span>
+                    </button>
                 </form>
             {%endif%}
             {% if user.is_superuser and user != post.author and not post.author.is_superuser %}

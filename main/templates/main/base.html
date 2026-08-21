@@ -19,16 +19,35 @@
             <div class="collapse navbar-collapse" id="mainNav">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a href="{% url 'home' %}" class="nav-link">Home</a>
+                        <a href="{% url 'home' %}" class="nav-link nav-icon-link" aria-label="Home" title="Home">
+                            <svg class="nav-link-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                                <path d="M3 11.5L12 4l9 7.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M5 10.75V20h14v-9.25" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M9 20v-6h6v6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                            <span class="visually-hidden">Home</span>
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{% url 'create_post'%}" class="nav-link">New post</a>
+                        <a href="{% url 'create_post'%}" class="nav-link nav-icon-link" aria-label="New post" title="New post">
+                            <svg class="nav-link-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                                <path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                            <span class="visually-hidden">New post</span>
+                        </a>
                     </li>
                 </ul>
                 <div class="d-flex align-items-center gap-2 ms-lg-auto">
                     {% if user.is_authenticated %}
                         <span class="user-pill">{{ user.username }}</span>
-                        <a href="{% url 'logout' %}" class="btn btn-outline-light btn-sm">Logout</a>
+                        <a href="{% url 'logout' %}" class="btn btn-outline-light btn-sm icon-button icon-button-ghost" aria-label="Logout" title="Logout">
+                            <svg class="icon-button-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                                <path d="M10 17l5-5-5-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M15 12H4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M20 4v16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                            <span class="visually-hidden">Logout</span>
+                        </a>
                     {% else %}
                         <a href="{% url 'login' %}" class="btn btn-outline-light btn-sm">Login</a>
                     {% endif %}
