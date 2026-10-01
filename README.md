@@ -1,6 +1,6 @@
 # Wsg
 
-Postinger is a small Django application for user registration, login, logout, and post management. Authenticated users can create posts, view the feed, and remove their own content when they have the required permission.
+this is a small Django application for user registration, login, logout, and post management. Authenticated users can create posts, view the feed, and remove their own content when they have the required permission.
 
 ## Features
 
