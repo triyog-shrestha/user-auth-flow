@@ -1,46 +1,52 @@
-# Wsg
+# User Auth Flow
 
-this is a small Django application for user registration, login, logout, and post management. Authenticated users can create posts, view the feed, and remove their own content when they have the required permission.
+A simple authentication system built with Python for the backend and HTML/CSS for the frontend. This project demonstrates a typical user authentication flow, including signup, login, session handling, and protected access for authenticated users.
+
+## Overview
+
+This repository is designed to showcase how a user authentication flow can be implemented in a web application. It includes the core pieces needed for managing user accounts, validating credentials, protecting routes, and maintaining a secure session-based login system.
+
+The project uses Python on the server side and HTML/CSS for the user interface, making it a good foundation for learning or extending into a full web application.
 
 ## Features
 
-- User sign up and login
-- Logout flow
-- Create posts for authenticated users
-- Delete posts with permission checks
-- Simple responsive UI built with Django templates and Bootstrap
+- User registration
+- User login
+- Password hashing / secure credential handling
+- Session-based authentication
+- Access control for protected pages
+- Logout functionality
+- Basic user dashboard or profile view
+- Simple front-end forms for auth actions
 
-## Requirements
+## Tech Stack
 
-- Python 3
-- Django
-- `django-crispy-forms`
-
-## Setup
-
-1. Create and activate a virtual environment.
-2. Install the project dependencies.
-3. Run database migrations.
-4. Start the development server.
-
-Example commands:
-
-```bash
-python -m venv .venv
-source .venv/bin/activate
-pip install Django django-crispy-forms
-python manage.py migrate
-python manage.py runserver
-```
+- Python
+- HTML
+- CSS
+- Web framework (Flask or Django-style workflow, depending on implementation)
+- Session management
+- Optional database integration (SQLite/MySQL/PostgreSQL)
 
 ## Project Structure
 
-- `main/` contains the app logic, templates, static files, forms, and views.
-- `website/` contains the Django project configuration.
-- `manage.py` is the Django management entry point.
-
-## Notes
-
-- The SQLite database file is ignored by Git.
-- Template styling lives in `main/static/main/styles.css`.
-- Navigation and post actions are rendered in `main/templates/main/base.html` and `main/templates/main/home.html`.
+```text
+user-auth-flow/
+├── app/
+│   ├── __init__.py
+│   ├── routes.py
+│   ├── models.py
+│   ├── auth.py
+│   ├── templates/
+│   │   ├── login.html
+│   │   ├── register.html
+│   │   ├── dashboard.html
+│   │   └── ...
+│   └── static/
+│       ├── css/
+│       └── js/
+├── requirements.txt
+├── .env.example
+├── README.md
+├── run.py
+└── ...
